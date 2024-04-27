@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shoppingapi-deployment
+  labels:
+    app: shoppingapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shoppingapi
+  template:
+    metadata:
+      labels:
+        app: shoppingapi
+    spec:
+      containers:
+        - name: shoppingapi
+          image: shoppingacr.azurecr.io/shoppingapi:v1
+          imagePullPolicy: IfNotPresent          
+          ports:
+            - containerPort: 80
+          env:
+            - name: ALLOWED_ORIGIN
+              valueFrom:
+                  configMapKeyRef:
+                    name: shoppingapi-configmap
+                    key: shoppingclient_url
+            - name: MYSQLDB_SERVER
+              valueFrom:
+                  configMapKeyRef:
+                    name: db-conf
+                    key: mysql_server_name
+            - name: MYSQLDB_DATABASE
+              valueFrom:
+                  configMapKeyRef:
+                    name: db-conf
+                    key: mysql_database_name
+            - name: MYSQLDB_USER
+              valueFrom:
+                  configMapKeyRef:
+                    name: db-credentials
+                    key: username
+            - name: MYSQLDB_ROOT_PASSWORD
+              valueFrom:
+                  configMapKeyRef:
+                    name: db-credentials
+                    key: password
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "0.1"
+            limits:
+              memory: "128Mi"
+              cpu: "0.3"
+      imagePullSecrets:
+        - name: acr-secret
+apiVersion: v1
+kind: Service
+metadata:
+  name: shoppingapi-service
+spec:  
+  selector:
+    app: shoppingapi
+  ports:
+    - protocol: TCP
+      port: 80

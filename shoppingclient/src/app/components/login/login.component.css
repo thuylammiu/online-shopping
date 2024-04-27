@@ -1,0 +1,21 @@
+.login_panel
+{
+    height: 30rem;
+    width: 30rem;
+    background-color: white;  
+    margin: auto;  
+    padding-top: 10rem;
+    padding-left: 5rem;;
+}
+
+.login-textbox
+{
+    border-radius: 0!important;
+    
+}
+
+.login-label
+{
+    margin-top: 0.5rem;
+    margin-right: 2rem;
+}

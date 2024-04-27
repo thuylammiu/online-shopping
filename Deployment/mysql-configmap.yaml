@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-conf
+data:
+ host: mysql
+ name: test  
+ mysql_server_name: mysql-service
+ mysql_database_name: finalexam

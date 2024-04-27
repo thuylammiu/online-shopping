@@ -1,0 +1,64 @@
+
+<div class="pt=5">
+    <form>
+        <div class="login_panel">
+            <div class="error-label">
+                <div class="alert alert-danger" role="alert" [hidden]="!loginError">
+                {{loginError}}
+                </div>
+            </div>
+            <div class="row">
+                <td class="col-3">
+                    <label  class="login-label" style="color: black;">Email</label>
+                </td>
+            
+                <td><div  class="input-space">
+                    <input name="email" type="email" class="login-textbox au-input" 
+                    [(ngModel)]="loginViewModel.username">    
+                    
+                   
+                
+                </div></td>
+                    
+            
+            </div>
+            <div class="row">
+                <td class="col-3"><label  class="login-label " style="color: black;">Password</label></td>
+                
+                <td>
+                    <div class="input-space">
+                        <input name="password" type="password" class="login-textbox au-input" [(ngModel)]="loginViewModel.password">                    
+
+                    </div>
+                </td>
+                    
+            
+            </div>
+            <div class="row" [hidden]="!isSignUp">
+                <td class="col-3"><label  class="login-label " style="color: black;">Confirm</label></td>
+                
+                <td>
+                    <div class="input-space">
+                        <input  type="password" class="login-textbox au-input">                    
+
+                    </div>
+                </td>
+                    
+            
+            </div>
+            <div class="row">
+                <td class="col-3"><label  class="login-label" style="color: black;"></label></td>
+                
+                <td>
+                    <div class="input-space">
+                        <button _ngcontent-crq-c17="" class="au-btn-submit" type="submit" (click)="onSubmit()"> Submit  </button>    &nbsp; &nbsp;  
+                        <button _ngcontent-crq-c17="" class="" type="button" (click)="signUp($event) "> Signup  </button>                   
+                       
+                    </div>
+                </td>
+                    
+               
+            </div>
+        </div>
+    </form>
+</div>
